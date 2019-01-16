@@ -1,0 +1,11 @@
+<div class="relative full-screen">
+  <div background class="absolute full-screen">
+      <img src="assets/img/background.jpg" class="full-screen blur">
+  </div>
+  <div content class="absolute full-screen scroll">
+    <router-outlet></router-outlet>
+  </div>
+  <div modal [ngClass]="{ 'hide': !modal }" class="absolute full-screen">
+    <app-modal-delete-user (callback)="modal()"></app-modal-delete-user>
+  </div>
+</div>
