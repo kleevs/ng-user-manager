@@ -3,6 +3,8 @@ import { ActivatedRoute } from '@angular/router';
 import { AjaxService } from 'src/service/ajax.service';
 import { User } from 'src/model/user';
 
+declare let $: any;
+
 @Component({
   selector: 'app-detail',
   templateUrl: './detail.component.html'
@@ -42,7 +44,7 @@ export class DetailComponent {
       password: false
     };
     this.ajaxService.saveUser(this.user)
-      .then(_ => location.href="/")
+      .then(_ => location.href= $("base").attr("href"))
       .catch((ctx: { error: {errors: {code: number}[] }}) => {
         var exc = ctx.error;
         this.hasError.login = exc.errors.find(_ => _.code == 10001) && true || false;

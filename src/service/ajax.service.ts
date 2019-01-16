@@ -27,7 +27,7 @@ export class AjaxService {
     getCurrentUser() {
         return this.userId = this.httpClient.get(`${this.apiDomain}/accounts`, {
             withCredentials: true,
-        }).toPromise().then((_:any) => _ && _.id).catch(_ => undefined);
+        }).toPromise().then((_:any) => _ && _.id).catch(_ => location.href = "/");
     }
 
     saveUser(user: User) {
@@ -52,6 +52,8 @@ export class AjaxService {
     }
 
     signin(login: string, password: string) {
-        return this.httpClient.get(`${this.apiDomain}/accounts/login?login=${login}&password=${password}`).toPromise();
+        return this.httpClient.get(`${this.apiDomain}/accounts/login?login=${login}&password=${password}`, {
+            withCredentials: true,
+        }).toPromise();
     }
 }
