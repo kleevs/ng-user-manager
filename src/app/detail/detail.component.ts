@@ -1,9 +1,7 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { AjaxService } from 'src/service/ajax.service';
 import { User } from 'src/model/user';
-
-declare let $: any;
 
 @Component({
   selector: 'app-detail',
@@ -18,7 +16,7 @@ export class DetailComponent {
     login: false,
     password: false
   };
-  constructor(private ajaxService: AjaxService, activatedRoute: ActivatedRoute) {
+  constructor(private ajaxService: AjaxService, activatedRoute: ActivatedRoute, private router: Router) {
     activatedRoute.paramMap.subscribe(params => {
       var id = parseInt(params.get("id"));
       id && ajaxService.getUser(id).then((_: any) => {
@@ -44,7 +42,7 @@ export class DetailComponent {
       password: false
     };
     this.ajaxService.saveUser(this.user)
-      .then(_ => location.href= $("base").attr("href"))
+      .then(_ => this.router.navigate(["/"]))
       .catch((ctx: { error: {errors: {code: number}[] }}) => {
         var exc = ctx.error;
         this.hasError.login = exc.errors.find(_ => _.code == 10001) && true || false;

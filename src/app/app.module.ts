@@ -4,6 +4,8 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 
+import { AuthGuard } from 'src/service/auth.service';
+
 import { AppComponent } from './app.component';
 import { ListComponent } from './list/list.component';
 import { DetailComponent } from './detail/detail.component';
@@ -13,9 +15,9 @@ import { VibrateDirective } from 'src/directive/vibrate.directive';
 
 const appRoutes: Routes = [
   { path: 'login', component: LoginComponent },
-  { path: 'detail/:id', component: DetailComponent },
-  { path: 'detail', component: DetailComponent },
-  { path: '', component: ListComponent },
+  { path: 'detail/:id', component: DetailComponent, canActivate: [AuthGuard] },
+  { path: 'detail', component: DetailComponent, canActivate: [AuthGuard] },
+  { path: '', component: ListComponent, canActivate: [AuthGuard] },
   { path: '**',
     redirectTo: '/',
     pathMatch: 'full'

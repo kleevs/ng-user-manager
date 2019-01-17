@@ -4,8 +4,9 @@ import { User } from 'src/model/user';
 
 @Injectable({
     providedIn: 'root',
-  })
+})
 export class AjaxService {
+    // apiDomain = "https://localhost:44308"
     apiDomain = "https://user-manager-api.azurewebsites.net"
     userId: Promise<number>;
     constructor (private httpClient: HttpClient) {
@@ -52,7 +53,10 @@ export class AjaxService {
     }
 
     signin(login: string, password: string) {
-        return this.httpClient.get(`${this.apiDomain}/accounts/login?login=${login}&password=${password}`, {
+        return this.httpClient.post(`${this.apiDomain}/accounts/login`, {
+            login: login,
+            password: password
+        }, {
             withCredentials: true,
         }).toPromise();
     }
