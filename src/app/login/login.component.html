@@ -2,22 +2,22 @@
     <h1 class="title">Connexion</h1> 
     <hr/>
     <div class="container">
-        <div class="full-width center">
+        <form class="full-width center" (submit)="signin()">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">Login</span>
                 </div>
-                <input data-id="login" [(ngModel)]="login" type="text" class="form-control" placeholder="Login" aria-label="Login" aria-describedby="basic-addon1">
+                <input data-id="login" name="login" [(ngModel)]="login" type="text" class="form-control" placeholder="Login" aria-label="Login" aria-describedby="basic-addon1">
             </div>
 
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">Mot de passe</span>
                 </div>
-                <input data-id="password" [(ngModel)]="password" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+                <input data-id="password" name="password" [(ngModel)]="password" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
             </div>
 
-            <button (click)="signin()" class="btn btn-primary full-width attention-hover" data-content="Se connecter">Sign in</button>
-        </div>
+            <button type="submit" class="btn btn-primary full-width attention-hover" data-content="Se connecter">Sign in</button>
+        </form>
     </div>
 </div>

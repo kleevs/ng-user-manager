@@ -2,52 +2,52 @@
     <h1 class="title">Détail de l'utilisateur</h1> 
     <hr/>
     <div class="container">
-        <div class="full-width center">
+        <form class="full-width center"  (click)="save()">
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">Nom</span>
                 </div>
-                <input data-id="lastname" [vibrate]="hasError.lastName" [ngClass]="{ 'has-error' : hasError.lastName }" [(ngModel)]="user.lastName" type="text" class="form-control" placeholder="Lastname" aria-label="Lastname" aria-describedby="basic-addon1">
+                <input data-id="lastname" name="lastname" [vibrate]="hasError.lastName" [ngClass]="{ 'has-error' : hasError.lastName }" [(ngModel)]="user.lastName" type="text" class="form-control" placeholder="Lastname" aria-label="Lastname" aria-describedby="basic-addon1">
             </div>
 
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">Prénom</span>
                 </div>
-                <input data-id="firstname" [vibrate]="hasError.firstName" [ngClass]="{ 'has-error' : hasError.firstName }" [(ngModel)]="user.firstName" type="text" class="form-control" placeholder="Firstname" aria-label="Firstname" aria-describedby="basic-addon1">
+                <input data-id="firstname" name="firstname" [vibrate]="hasError.firstName" [ngClass]="{ 'has-error' : hasError.firstName }" [(ngModel)]="user.firstName" type="text" class="form-control" placeholder="Firstname" aria-label="Firstname" aria-describedby="basic-addon1">
             </div>
 
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">Date de naissance</span>
                 </div>
-                <input data-id="birthdate" [vibrate]="hasError.birthDate" [ngClass]="{ 'has-error' : hasError.birthDate }" [(ngModel)]="user.birthDate" type="text" class="form-control" placeholder="Birthdate" aria-label="Birthdate" aria-describedby="basic-addon1">
+                <input data-id="birthdate" name="birthdate" [vibrate]="hasError.birthDate" [ngClass]="{ 'has-error' : hasError.birthDate }" [(ngModel)]="user.birthDate" type="text" class="form-control" placeholder="Birthdate" aria-label="Birthdate" aria-describedby="basic-addon1">
             </div>
 
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">Login</span>
                 </div>
-                <input data-id="login" [vibrate]="hasError.login" [attr.disabled]="user.id" [ngClass]="{ 'has-error' : hasError.login }" [(ngModel)]="user.login" type="text" class="form-control" placeholder="Login" aria-label="Login" aria-describedby="basic-addon1">
+                <input data-id="login" name="login" [vibrate]="hasError.login" [attr.disabled]="user.id" [ngClass]="{ 'has-error' : hasError.login }" [(ngModel)]="user.login" type="text" class="form-control" placeholder="Login" aria-label="Login" aria-describedby="basic-addon1">
             </div>
 
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1">Mot de passe</span>
                 </div>
-                <input data-id="password" [vibrate]="hasError.password" [attr.disabled]="user.id" [ngClass]="{ 'has-error' : hasError.password }" [(ngModel)]="user.password" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
+                <input data-id="password" name="password" [vibrate]="hasError.password" [attr.disabled]="user.id" [ngClass]="{ 'has-error' : hasError.password }" [(ngModel)]="user.password" type="password" class="form-control" placeholder="Password" aria-label="Password" aria-describedby="basic-addon1">
             </div>
 
             <div class="input-group mb-3">
                 <div class="input-group-prepend">
                     <div class="input-group-text">
-                        <input data-id="actif" [(ngModel)]="user.isActif" type="checkbox" aria-label="Checkbox for following text input">
+                        <input data-id="actif" name="actif" [(ngModel)]="user.isActif" type="checkbox" aria-label="Checkbox for following text input">
                     </div>
                 </div>
                 <span  class="form-control">{{ user.isActif && 'Actif' || 'Inactif'}}</span>
             </div>
 
-            <button data-id="save" (click)="save()" class="btn btn-primary full-width attention-hover" data-content="Enregistrer l'utilisateur">Enregistrer</button>
-        </div>
+            <button data-id="save" class="btn btn-primary full-width attention-hover" data-content="Enregistrer l'utilisateur">Enregistrer</button>
+        </form>
     </div>
 </div>

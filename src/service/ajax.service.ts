@@ -28,7 +28,7 @@ export class AjaxService {
     getCurrentUser() {
         return this.userId = this.httpClient.get(`${this.apiDomain}/accounts`, {
             withCredentials: true,
-        }).toPromise().then((_:any) => _ && _.id).catch(_ => undefined);
+        }).toPromise().then((_:any) => _ && +_.id).catch(_ => undefined);
     }
 
     saveUser(user: User) {
