@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { User } from 'src/model/user';
-import { AjaxService } from 'src/service/ajax.service';
+import { UserService } from 'src/service/user.service';
 import { AppComponent } from 'src/app/app.component';
 
 @Component({
@@ -10,9 +10,9 @@ import { AppComponent } from 'src/app/app.component';
 export class ListComponent {
   users: User[] = [];
   
-  constructor(private ajaxService: AjaxService, private appComponent: AppComponent) {
-    ajaxService.getUsers().then((users: any[]) => {
-      ajaxService.userId.then(userId => {
+  constructor(private userService: UserService, private appComponent: AppComponent) {
+    userService.getUsers().then((users: any[]) => {
+      userService.userId.then(userId => {
         this.users = users.map(_ => {
           var user = new User();
           user.id = _.id;
@@ -33,7 +33,7 @@ export class ListComponent {
     this.appComponent.modal = ((fn) => {
       return user.isActif && fn || fn() || undefined;
     })(() => {
-      this.ajaxService.removeUser(user.id).then(() => {
+      this.userService.removeUser(user.id).then(() => {
         this.users = this.users.filter(_ => _ !== user);
       });
     });

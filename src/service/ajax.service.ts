@@ -1,63 +1,78 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
-import { User } from 'src/model/user';
+import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 
 @Injectable({
     providedIn: 'root',
 })
 export class AjaxService {
-    // apiDomain = "https://localhost:44308"
-    apiDomain = "https://user-manager-api.azurewebsites.net"
-    userId: Promise<number>;
     constructor (private httpClient: HttpClient) {
-        this.getCurrentUser();
     }
 
-    getUsers() {
-        return this.httpClient.get(`${this.apiDomain}/users`, {
-            withCredentials: true
-        }).toPromise().catch(_ => []);
+    get(url: string, options?: {
+        headers?: HttpHeaders | {
+            [header: string]: string | string[];
+        };
+        observe?: 'body';
+        params?: HttpParams | {
+            [param: string]: string | string[];
+        };
+        reportProgress?: boolean;
+        responseType?: 'json';
+        withCredentials?: boolean;
+    }) {
+        options = options || {};
+        options.withCredentials = true;
+        return this.httpClient.get(url, options).toPromise();
     }
 
-    getUser(id: number) {
-        return this.httpClient.get(`${this.apiDomain}/users/${id}`, {
-            withCredentials: true
-        }).toPromise();
+    put(url: string, body: any | null, options?: {
+        headers?: HttpHeaders | {
+            [header: string]: string | string[];
+        };
+        observe?: 'body';
+        params?: HttpParams | {
+            [param: string]: string | string[];
+        };
+        reportProgress?: boolean;
+        responseType?: 'json';
+        withCredentials?: boolean;
+    }) {
+        options = options || {};
+        options.withCredentials = true;
+        return this.httpClient.put(url, body, options).toPromise();
     }
 
-    getCurrentUser() {
-        return this.userId = this.httpClient.get(`${this.apiDomain}/accounts`, {
-            withCredentials: true,
-        }).toPromise().then((_:any) => _ && +_.id).catch(_ => undefined);
+    post(url: string, body: any | null, options?: {
+        headers?: HttpHeaders | {
+            [header: string]: string | string[];
+        };
+        observe?: 'body';
+        params?: HttpParams | {
+            [param: string]: string | string[];
+        };
+        reportProgress?: boolean;
+        responseType?: 'json';
+        withCredentials?: boolean;
+    }) {
+        options = options || {};
+        options.withCredentials = true;
+        return this.httpClient.post(url, body, options).toPromise();
     }
 
-    saveUser(user: User) {
-        var url = user.id && `${this.apiDomain}/users/${user.id}` || `${this.apiDomain}/users`;
-        return (user.id && this.httpClient.put || this.httpClient.post).call(this.httpClient, url, {
-            id: user.id,
-            lastName: user.lastName,
-            firstName: user.firstName,
-            birthDate: user.birthDate,
-            email: user.login,
-            password: user.password,
-            isActive: user.isActif,
-        }, {
-            withCredentials: true
-        }).toPromise();
-    }
-
-    removeUser(id: number) {
-        return this.httpClient.delete(`${this.apiDomain}/users/${id}`, {
-            withCredentials: true
-        }).toPromise();
-    }
-
-    signin(login: string, password: string) {
-        return this.httpClient.post(`${this.apiDomain}/accounts/login`, {
-            login: login,
-            password: password
-        }, {
-            withCredentials: true,
-        }).toPromise();
+    delete(url: string, options?: {
+        headers?: HttpHeaders | {
+            [header: string]: string | string[];
+        };
+        observe?: 'body';
+        params?: HttpParams | {
+            [param: string]: string | string[];
+        };
+        reportProgress?: boolean;
+        responseType?: 'json';
+        withCredentials?: boolean;
+    }) {
+        options = options || {};
+        options.withCredentials = true;
+        return this.httpClient.delete(url, options).toPromise();
     }
 }
