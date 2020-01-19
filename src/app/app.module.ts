@@ -8,9 +8,7 @@ import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './component/app.component';
 import { DetailComponent } from './component/detail.component';
-import { AjaxService } from './service/ajax.service';
 import { VibrateDirective } from './directive/vibrate.directive';
-import { ToolService } from './service/tool.service';
 import { ListComponent } from './component/list.component';
 
 @NgModule({
@@ -30,7 +28,7 @@ import { ListComponent } from './component/list.component';
       { path: 'users/:id', component: DetailComponent },
     ])
   ],
-  providers: [AjaxService, ToolService],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

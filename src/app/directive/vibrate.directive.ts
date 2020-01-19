@@ -1,5 +1,5 @@
 import { Directive, ElementRef, Input } from '@angular/core';
-import { run } from '../tools/animation';
+import { run } from 'src/domain/tool/animation';
 
 @Directive({
   selector: '[vibrate]'
